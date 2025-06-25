@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Applications – JobHuntPro</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f6fa;
+      margin: 0;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #004aad;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      padding: 14px 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      font-size: 15px;
+    }
+
+    th {
+      background-color: #e0ecff;
+      color: #00357a;
+    }
+
+    .btn {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-view {
+      background-color: #1976d2;
+      color: white;
+    }
+
+    .btn-withdraw {
+      background-color: #e53935;
+      color: white;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .status {
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .status.applied { background-color: #d0eaff; color: #004aad; }
+    .status.shortlisted { background-color: #e6ffe6; color: #2e7d32; }
+    .status.interview { background-color: #fff4cc; color: #9c6f00; }
+    .status.rejected { background-color: #ffe6e6; color: #d32f2f; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>My Job Applications</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Job Title</th>
+          <th>Company</th>
+          <th>Date Applied</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Java Full Stack Developer</td>
+          <td>Infosys</td>
+          <td>2025-06-10</td>
+          <td><span class="status applied">Applied</span></td>
+          <td>
+            <a href="/job-detail/101" class="btn btn-view">View</a>
+            <button class="btn btn-withdraw">Withdraw</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Frontend Developer</td>
+          <td>Zoho Corp</td>
+          <td>2025-06-05</td>
+          <td><span class="status shortlisted">Shortlisted</span></td>
+          <td>
+            <a href="/job-detail/102" class="btn btn-view">View</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Backend Engineer</td>
+          <td>TCS</td>
+          <td>2025-06-02</td>
+          <td><span class="status rejected">Rejected</span></td>
+          <td>
+            <a href="/job-detail/103" class="btn btn-view">View</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Software Intern</td>
+          <td>Wipro</td>
+          <td>2025-06-01</td>
+          <td><span class="status interview">Interview Scheduled</span></td>
+          <td>
+            <a href="/job-detail/104" class="btn btn-view">View</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

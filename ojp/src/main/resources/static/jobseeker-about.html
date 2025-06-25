@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About – JobHuntPro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+	/* header.css */
+	:root {
+	  --primary: #2563eb;
+	  --muted: #6b7280;
+	  --radius: 16px;
+	  --text: #1f2937;
+	}
+
+	.navbar {
+	  background: #ffffff;
+	  padding: 1rem 2rem;
+	  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+	  display: flex;
+	  justify-content: space-between;
+	  align-items: center;
+	}
+
+	.logo {
+	  font-size: 1.8rem;
+	  font-weight: 700;
+	  color: var(--primary);
+	  text-decoration: none;
+	}
+
+	.navbar nav a {
+	  margin: 0 12px;
+	  font-weight: 500;
+	  text-decoration: none;
+	  color: var(--muted);
+	  transition: color 0.3s ease;
+	}
+
+	.navbar nav a:hover {
+	  color: var(--primary);
+	}
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    .about-section {
+      padding: 60px 20px;
+      background: linear-gradient(to right, #e0ecff, #f5f7fa);
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+    }
+    .about-section h1 {
+      font-weight: 700;
+      color: #0d6efd;
+    }
+    .highlight {
+      color: #198754;
+      font-weight: 600;
+    }
+    .dev-card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-top: 30px;
+    }
+    .dev-card h4 {
+      color: #0d6efd;
+    }
+	
+	.navbar nav a.active {
+	  color: var(--primary);
+	  font-weight: 600;
+	  border-bottom: 2px solid var(--primary);
+	  padding-bottom: 4px;
+	}
+
+  </style>
+</head>
+<body>
+
+	<!-- header.html -->
+	<header class="navbar">
+	  <div class="logo">JobHuntPro</div>
+	  <nav>
+		<a href="jobseeker-index">Index</a>
+	    <a href="jobseeker-about">About</a>
+	    <a href="jobseeker-contact">Contact</a>
+	    <a href="jobseeker-report">Report</a>
+	    <a href="jobseeker-application">Application</a>
+	    <a href="jobseeker-profile">Profile</a>
+	  </nav>
+	</header>
+
+	
+  <div class="container about-section">
+    <h1 class="mb-4">About <span class="highlight">JobHuntPro</span></h1>
+    <p><strong>JobHuntPro</strong> is a modern, user-friendly job portal developed to bridge the gap between job seekers and employers. It is designed to replicate real-world platforms like Naukri, LinkedIn Jobs, and Indeed with added simplicity and focused features.</p>
+
+    <p>It includes features like:</p>
+    <ul>
+      <li>Role-based authentication for <strong>Admin</strong>, <strong>Job Seekers</strong>, and <strong>Recruiters</strong></li>
+      <li>Advanced job filtering (by location, salary, skills, experience)</li>
+      <li>Resume upload, profile management, job posting, and application tracking</li>
+      <li>Admin dashboard to monitor platform activity and user analytics</li>
+    </ul>
+
+    <p>This project is built using:</p>
+    <ul>
+      <li><strong>Backend:</strong> Java, Spring Boot, REST API, MySQL</li>
+      <li><strong>Frontend:</strong> HTML5, CSS3, Bootstrap 5, JavaScript</li>
+    </ul>
+
+    <div class="dev-card">
+      <h4>About the Developer</h4>
+      <p><strong>Manoj S N</strong> is an aspiring Java Full Stack Developer from Bengaluru, India. He is passionate about building scalable web applications and mastering software engineering through real-world projects.</p>
+      <p><strong>Email:</strong> snmanoj231@gmail.com</p>
+      <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/manojgowdasn" target="_blank">linkedin.com/in/manojgowdasn</a></p>
+      <p><strong>GitHub:</strong> <a href="https://github.com/ManojSNDeveloper" target="_blank">github.com/ManojSN</a></p>
+    </div>
+  </div>
+  
+  <script>
+	// Highlight active link
+		  const currentPath = window.location.pathname.split("/").pop(); // get filename
+		  document.querySelectorAll(".navbar nav a").forEach(link => {
+		    if (link.getAttribute("href") === currentPath) {
+		      link.classList.add("active");
+		    }
+		  });
+  </script>
+  
+</body>
+</html>

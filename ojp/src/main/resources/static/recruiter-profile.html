@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Employer Profile – JobHuntPro</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<style>
+		/* header.css */
+		:root {
+			--primary: #2563eb;
+			--muted: #6b7280;
+			--radius: 16px;
+			--text: #1f2937;
+		}
+
+		.navbar {
+			background: #ffffff;
+			padding: 1rem 2rem;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.logo {
+			font-size: 1.8rem;
+			font-weight: 700;
+			color: var(--primary);
+			text-decoration: none;
+		}
+
+		.navbar nav a {
+			margin: 0 12px;
+			font-weight: 500;
+			text-decoration: none;
+			color: var(--muted);
+			transition: color 0.3s ease;
+		}
+
+		.navbar nav a:hover {
+			color: var(--primary);
+		}
+
+		body {
+			background: linear-gradient(to right, #eef2f3, #f9fbff);
+			font-family: 'Segoe UI', sans-serif;
+		}
+
+		.profile-container {
+			max-width: 850px;
+			margin: 60px auto;
+			background: white;
+			padding: 40px;
+			border-radius: 18px;
+			box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
+		}
+
+		.form-title {
+			font-size: 30px;
+			font-weight: 700;
+			margin-bottom: 30px;
+			color: #1e3a8a;
+			text-align: center;
+		}
+
+		.form-section {
+			margin-bottom: 30px;
+		}
+
+		.form-section h5 {
+			color: #3b82f6;
+			margin-bottom: 20px;
+			font-weight: 600;
+		}
+
+		.form-label {
+			font-weight: 500;
+			color: #374151;
+		}
+
+		.form-control {
+			border-radius: 10px;
+			border: 1px solid #d1d5db;
+			box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+			transition: border-color 0.2s;
+		}
+
+		.form-control:focus {
+			border-color: #3b82f6;
+			box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+		}
+
+		.btn-primary {
+			background-color: #3b82f6;
+			border: none;
+			border-radius: 10px;
+			padding: 12px;
+			font-size: 16px;
+			font-weight: 600;
+		}
+
+		.btn-primary:hover {
+			background-color: #2563eb;
+		}
+
+		@media (min-width: 768px) {
+			.row>div {
+				padding: 0 10px;
+			}
+		}
+
+		.navbar nav a.active {
+			color: var(--primary);
+			font-weight: 600;
+			border-bottom: 2px solid var(--primary);
+			padding-bottom: 4px;
+		}
+	</style>
+</head>
+
+<body>
+
+	<header class="navbar">
+		<div class="logo">JobHuntPro</div>
+		<nav>
+			<a href="recruiter-index">Index</a>
+			<a href="recruiter-about">About</a>
+			<a href="recruiter-contact">Contact</a>
+			<a href="recruiter-report">Report</a>
+			<a href="recruiter-dashboard">Dashboard</a>
+			<a href="recruiter-application">Application</a>
+			<a href="recruiter-profile">Profile</a>
+			<a href="post-job">Post-Job</a>
+		</nav>
+	</header>
+
+
+	<div class="profile-container">
+		<div class="form-title">🏢 Employer Profile</div>
+
+		<form id="employerForm">
+			<!-- Company Info -->
+			<div class="form-section">
+				<h5>Company Info</h5>
+				<div class="row">
+					<div class="col-md-6 mb-3">
+						<label class="form-label">Company Name</label>
+						<input type="text" class="form-control" id="companyName" required />
+					</div>
+					<div class="col-md-6 mb-3">
+						<label class="form-label">Website</label>
+						<input type="url" class="form-control" id="website" />
+					</div>
+					<div class="col-md-6 mb-3">
+						<label class="form-label">Contact Info</label>
+						<input type="text" class="form-control" id="contactInfo" required />
+					</div>
+					<div class="col-md-6 mb-3">
+						<label class="form-label">Logo URL</label>
+						<input type="url" class="form-control" id="logoUrl" />
+					</div>
+				</div>
+			</div>
+
+			<!-- User Info -->
+			<div class="form-section">
+			  <h5>User Info</h5>
+			  <div class="row">
+			    <div class="col-md-6 mb-3">
+			      <label class="form-label">Full Name</label>
+			      <input type="text" class="form-control" id="userName" required />
+			    </div>
+			    <div class="col-md-6 mb-3">
+			      <label class="form-label">Email</label>
+			      <input type="email" class="form-control" id="userEmail" required />
+			    </div>
+			    <div class="col-md-6 mb-3">
+			      <label class="form-label">Password</label>
+			      <div class="input-group">
+			        <input type="password" class="form-control" id="userPassword" required />
+			        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+			          👁️
+			        </button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+			<button type="submit" class="btn btn-primary w-100">Update Profile</button>
+		</form>
+	</div>
+
+	<script>
+		let employerId, userId, role;
+
+		document.addEventListener("DOMContentLoaded", async () => {
+			const recruiter = JSON.parse(sessionStorage.getItem("recruiter"));
+			if (!recruiter || !recruiter.id) {
+				alert("Unauthorized");
+				window.location.href = "recruiter-login";
+				return;
+			}
+
+			employerId = recruiter.id;
+
+			try {
+				const res = await fetch(`http://localhost:8080/employer/${employerId}`);
+				const { body: employer } = await res.json();
+
+				// Fill Employer Fields
+				document.getElementById("companyName").value = employer.companyName || "";
+				document.getElementById("website").value = employer.website || "";
+				document.getElementById("contactInfo").value = employer.contactInfo || "";
+				document.getElementById("logoUrl").value = employer.logoUrl || "";
+
+				// Fill User Fields
+				if (employer.user) {
+					userId = employer.user.id;
+					role = employer.user.role;
+					document.getElementById("userName").value = employer.user.name || "";
+					document.getElementById("userEmail").value = employer.user.email || "";
+					document.getElementById("userPassword").value = employer.user.password || ""; // fetch password
+				}
+
+			} catch (err) {
+				console.error("Failed to load employer", err);
+				alert("Error loading profile.");
+			}
+		});
+
+		document.getElementById("employerForm").addEventListener("submit", async (e) => {
+			e.preventDefault();
+
+			const userUpdate = {
+				id: userId,
+				name: document.getElementById("userName").value,
+				email: document.getElementById("userEmail").value,
+				password: document.getElementById("userPassword").value,
+				role: role
+			};
+
+			const employerUpdate = {
+				companyName: document.getElementById("companyName").value,
+				website: document.getElementById("website").value,
+				contactInfo: document.getElementById("contactInfo").value,
+				logoUrl: document.getElementById("logoUrl").value,
+				user: userUpdate
+			};
+
+			try {
+				const userRes = await fetch(`http://localhost:8080/users/update/${userId}`, {
+					method: "PUT",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(userUpdate)
+				});
+
+				if (!userRes.ok) {
+					const userErr = await userRes.json();
+					throw new Error(userErr.message || "User update failed");
+				}
+
+				const empRes = await fetch(`http://localhost:8080/employer/employer/update/${employerId}`, {
+					method: "PUT",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(employerUpdate)
+				});
+
+				if (!empRes.ok) {
+					const empErr = await empRes.json();
+					throw new Error(empErr.message || "Employer update failed");
+				}
+
+				alert("✅ Profile updated successfully!");
+			} catch (err) {
+				console.error(err);
+				alert("❌ Error: " + err.message);
+			}
+		});
+
+		// Toggle password visibility
+		document.getElementById("togglePassword").addEventListener("click", () => {
+			const passwordInput = document.getElementById("userPassword");
+			const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+			passwordInput.setAttribute("type", type);
+		});
+
+	</script>
+	<script>
+
+		// Highlight active link
+		const currentPath = window.location.pathname.split("/").pop(); // get filename
+		document.querySelectorAll(".navbar nav a").forEach(link => {
+			if (link.getAttribute("href") === currentPath) {
+				link.classList.add("active");
+			}
+		});
+	</script>
+</body>
+
+</html>

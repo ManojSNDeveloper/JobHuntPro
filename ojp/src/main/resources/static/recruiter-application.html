@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Applications – Recruiter Dashboard</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<style>
+		body {
+			font-family: 'Poppins', sans-serif;
+			background-color: #f1f5f9;
+			margin: 0;
+			padding: 0;
+			color: #1e293b;
+		}
+
+		.navbar {
+			background-color: #ffffff;
+			padding: 1rem 2rem;
+			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.04);
+			position: sticky;
+			top: 0;
+			z-index: 999;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.navbar .logo {
+			font-weight: 700;
+			font-size: 1.8rem;
+			color: #3b82f6;
+			letter-spacing: -0.5px;
+		}
+
+		.navbar nav a {
+			margin-left: 1rem;
+			text-decoration: none;
+			color: #334155;
+			font-weight: 500;
+			padding: 0.4rem 0.8rem;
+			border-radius: 8px;
+			transition: background 0.2s ease;
+		}
+
+		.navbar nav a:hover {
+			background-color: #e2e8f0;
+			color: #1e40af;
+		}
+
+		.container {
+			max-width: 1200px;
+			margin: 2.5rem auto;
+			padding: 0 1rem;
+		}
+
+		h3.mb-4 {
+			font-weight: 600;
+			font-size: 2rem;
+			color: #0f172a;
+			margin-bottom: 2.5rem !important;
+			border-bottom: 2px solid #e5e7eb;
+			padding-bottom: 0.5rem;
+		}
+
+		.job-card {
+			background: rgba(255, 255, 255, 0.9);
+			border-radius: 16px;
+			padding: 2rem;
+			margin-bottom: 2rem;
+			box-shadow: 0 14px 28px rgba(0, 0, 0, 0.06);
+			transition: transform 0.25s ease, box-shadow 0.3s ease;
+			border-left: 6px solid #3b82f6;
+			backdrop-filter: blur(10px);
+		}
+
+		.job-card:hover {
+			transform: translateY(-6px);
+			box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+		}
+
+		.d-flex.align-items-center {
+			gap: 1.5rem;
+			margin-bottom: 1rem;
+			flex-wrap: wrap;
+		}
+
+		.company-logo {
+			height: 52px;
+			width: 52px;
+			border-radius: 10px;
+			object-fit: cover;
+			background-color: #f3f4f6;
+			padding: 6px;
+			border: 1px solid #e5e7eb;
+		}
+
+		.fw-bold {
+			font-weight: 700 !important;
+			font-size: 1.3rem;
+			color: #1e293b;
+		}
+
+		.text-muted {
+			color: #64748b !important;
+			font-size: 0.9rem;
+		}
+
+		p {
+			margin-bottom: 0.65rem;
+			font-size: 0.96rem;
+			color: #374151;
+			line-height: 1.5;
+		}
+
+		strong {
+			color: #0f172a;
+			font-weight: 600;
+		}
+
+		.resume-link {
+			color: #10b981;
+			font-weight: 500;
+			text-decoration: none;
+			transition: color 0.2s ease;
+		}
+
+		.resume-link:hover {
+			text-decoration: underline;
+			color: #059669;
+		}
+
+		.form-select {
+			width: 220px;
+			padding: 0.5rem 0.75rem;
+			font-size: 0.96rem;
+			border-radius: 10px;
+			background-color: #f9fafb;
+			border: 1px solid #cbd5e1;
+			box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+			transition: border-color 0.3s ease, box-shadow 0.3s ease;
+		}
+
+		.form-select:focus {
+			border-color: #3b82f6;
+			box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
+			outline: none;
+		}
+
+		.text-danger {
+			color: #dc2626;
+			font-weight: 500;
+		}
+
+		@media (max-width: 768px) {
+			.navbar {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 0.5rem;
+			}
+
+			.navbar nav {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+			}
+
+			.job-card {
+				padding: 1.5rem;
+			}
+
+			.form-select {
+				width: 100%;
+				margin-top: 1rem;
+			}
+
+			.d-flex.align-items-center {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+
+			.container {
+				padding: 0 1rem;
+			}
+		}
+
+		.navbar nav a.active {
+			color: var(--primary);
+			font-weight: 600;
+			border-bottom: 2px solid var(--primary);
+			padding-bottom: 4px;
+		}
+	</style>
+
+</head>
+<body>
+
+	<!-- header.html -->
+	<header class="navbar">
+		<div class="logo">JobHuntPro</div>
+		<nav>
+			<a href="recruiter-index">Index</a>
+			<a href="recruiter-about">About</a>
+			<a href="recruiter-contact">Contact</a>
+			<a href="recruiter-report">Report</a>
+			<a href="recruiter-dashboard">Dashboard</a>
+			<a href="recruiter-application">Application</a>
+			<a href="recruiter-profile">Profile</a>
+			<a href="post-job">Post-Job</a>
+		</nav>
+	</header>
+	<div class="container">
+		<h3 class="mb-4">Applications Received</h3>
+		<div id="applicationList">Loading...</div>
+	</div>
+
+	<script>
+		const recruiter = JSON.parse(sessionStorage.getItem("recruiter"));
+
+		async function fetchApplications() {
+			const appDiv = document.getElementById("applicationList");
+			if (!recruiter?.id) {
+				appDiv.innerHTML = '<p class="text-danger">Recruiter not logged in.</p>';
+				return;
+			}
+
+			try {
+				const res = await fetch(`http://localhost:8080/application/by-employer/${recruiter.id}`);
+				const data = await res.json();
+				console.log("Fetched applications:", data); // 🔍 DEBUG
+
+				const apps = data.body;
+				if (!Array.isArray(apps) || !apps.length) {
+					appDiv.innerHTML = '<p>No applications found for your jobs.</p>';
+					return;
+				}
+				appDiv.innerHTML = apps.map(createApplicationCard).join("");
+			} catch (e) {
+				console.error(e);
+				appDiv.innerHTML = `<p class="text-danger">Error fetching applications: ${e.message}</p>`;
+			}
+		}
+
+		function createApplicationCard(application) {
+			console.log("Application entry:", application); // 🔍 DEBUG
+
+			const job = application.job || application.postedJob || {};
+			const seeker = application.jobSeeker || application.applicant || {};
+			const user = seeker.user || {};
+			const employer = job.postedBy || {}; // ✅ Get the employer object
+
+			const title = job.title || "—";
+			const location = job.location || "—";
+			const salary = job.salary || "—";
+			const Deadline = job.deadline || "—";
+			const seekerName = user.name || "—";
+			const seekerEmail = user.email || "—";
+			const skills = seeker.skills || "—";
+			const experience = seeker.experience || "—";
+			const resumeUrl = seeker.resumeUrl
+				? (seeker.resumeUrl.startsWith("http") ? seeker.resumeUrl : `http://localhost:8080${seeker.resumeUrl}`)
+				: null;
+
+			const logoUrl = employer.logoUrl
+				? (employer.logoUrl.startsWith("http") ? employer.logoUrl : `http://localhost:8080${employer.logoUrl}`)
+				: "https://via.placeholder.com/50"; // ✅ Default fallback image if logo not found
+
+			// You can now use `logoUrl` wherever needed in your card HTML
+			// For example:
+			return `
+	    <div class="job-card mb-4 p-3 shadow-sm rounded" style="background:#fff;">
+	      <div class="d-flex align-items-center mb-2">
+	        <img src="${logoUrl}" alt="Logo" class="me-3" style="height: 40px; width: auto;" />
+	        <div>
+	          <div class="fw-bold">${title}</div>
+	          <small class="text-muted">${location} • ${salary} • Deadline: ${Deadline}</small>
+	        </div>
+	      </div>
+	      <p><strong>Applicant Name:</strong> ${seekerName}</p>
+	      <p><strong>Applicant Email:</strong> ${seekerEmail}</p>
+	      <p><strong>Skills:</strong> ${skills}</p>
+	      <p><strong>Experience:</strong> ${experience}</p>
+	      <p><strong>Resume:</strong> ${resumeUrl ? `<a href="${resumeUrl}" target="_blank">View Resume</a>` : "—"
+				}</p>
+	      <p><strong>Status:</strong> ${application.status}</p>
+	      <select onchange="updateApplicationStatus(${application.id}, this.value)" class="form-select w-auto">
+	        ${["APPLIED", "PENDING", "SHORTLISTED", "INTERVIEW", "REJECTED", "SELECTED"]
+					.map(status => `<option value="${status}" ${application.status === status ? "selected" : ""}>${status}</option>`)
+					.join("")}
+	      </select>
+	    </div>
+	  `;
+		}
+
+
+		async function updateApplicationStatus(appId, newStatus) {
+			try {
+				const res = await fetch(`http://localhost:8080/application/update-status/${appId}?status=${newStatus}`, {
+					method: "PUT"
+				});
+				if (res.ok) {
+					alert("Status updated successfully");
+				} else {
+					alert("Failed to update status");
+				}
+			} catch (e) {
+				alert("Error updating status: " + e.message);
+			}
+		}
+
+
+		document.addEventListener("DOMContentLoaded", fetchApplications);
+	</script>
+
+	<script>
+
+		// Highlight active link
+		const currentPath = window.location.pathname.split("/").pop(); // get filename
+		document.querySelectorAll(".navbar nav a").forEach(link => {
+			if (link.getAttribute("href") === currentPath) {
+				link.classList.add("active");
+			}
+		});
+	</script>
+</body>
+
+</html>

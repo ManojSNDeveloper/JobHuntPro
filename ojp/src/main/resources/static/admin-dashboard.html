@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - JobHuntPro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      /* === Supreme Admin Header === */
+      :root {
+          --primary: #4361ee;
+          --primary-dark: #3a0ca3;
+          --primary-light: #e0e7ff;
+          --accent: #06d6a0;
+          --accent-dark: #05b388;
+          --danger: #ef233c;
+          --danger-dark: #d90429;
+          --bg: #f8f9fa;
+          --card-bg: #ffffff;
+          --text: #1a1a2e;
+          --text-muted: #6c757d;
+          --border: #e9ecef;
+          --radius: 24px;
+          --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+          --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
+          --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+          --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.15);
+          --shadow-xxl: 0 30px 60px rgba(0, 0, 0, 0.2);
+          --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+          --gradient-primary: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+          --gradient-accent: linear-gradient(135deg, #06d6a0 0%, #118ab2 100%);
+          --gradient-danger: linear-gradient(135deg, #ef233c 0%, #d90429 100%);
+          --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.98) 100%);
+      }
+
+      @font-face {
+          font-family: 'ClashDisplay';
+          src: url('https://fonts.cdnfonts.com/css/clash-display') format('woff2');
+          font-weight: 600;
+          font-style: normal;
+      }
+
+      /* === Supreme Admin Navbar === */
+      .navbar {
+          background: rgba(255, 255, 255, 0.98);
+          padding: 0.8rem 3rem;
+          box-shadow: var(--shadow-xl);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 0 0 var(--radius) var(--radius);
+          margin: 0 auto;
+          width: 100%;
+          transition: var(--transition);
+      }
+
+      .navbar:hover {
+          box-shadow: var(--shadow-xxl);
+          transform: translateY(-1px);
+      }
+
+      .logo {
+          font-family: 'ClashDisplay', sans-serif;
+          font-size: 2rem;
+          font-weight: 700;
+          background: var(--gradient-primary);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          letter-spacing: -0.5px;
+          display: inline-flex;
+          align-items: center;
+          text-decoration: none;
+          transition: var(--transition);
+          position: relative;
+          padding: 0.5rem 1rem;
+          border-radius: 12px;
+      }
+
+      .logo:hover {
+          transform: scale(1.05);
+          background: var(--gradient-primary);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+      }
+
+      .logo::after {
+          content: "PRO";
+          font-size: 1.2rem;
+          background: var(--gradient-accent);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          margin-left: 0.4rem;
+          align-self: flex-end;
+          font-weight: 800;
+          position: absolute;
+          right: -2.2rem;
+          bottom: 0.2rem;
+      }
+
+      .navbar nav {
+          display: flex;
+          align-items: center;
+          gap: 1.5rem;
+          padding: 0.5rem 1rem;
+          background: rgba(255, 255, 255, 0.7);
+          border-radius: 12px;
+          box-shadow: var(--shadow-sm);
+          transition: var(--transition);
+      }
+
+      .navbar nav:hover {
+          background: rgba(255, 255, 255, 0.9);
+          box-shadow: var(--shadow-md);
+      }
+
+      .navbar nav a {
+          font-weight: 600;
+          text-decoration: none;
+          color: var(--text-muted);
+          font-size: 0.95rem;
+          position: relative;
+          padding: 0.6rem 0.8rem;
+          transition: var(--transition);
+          letter-spacing: 0.5px;
+          border-radius: 8px;
+      }
+
+      .navbar nav a::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 0;
+          height: 3px;
+          background: var(--gradient-primary);
+          transition: var(--transition);
+          border-radius: 2px;
+      }
+
+      .navbar nav a:hover {
+          color: var(--text);
+          transform: translateY(-2px);
+          background: rgba(67, 97, 238, 0.1);
+      }
+
+      .navbar nav a:hover::after {
+          width: 80%;
+      }
+
+      .navbar nav a.active {
+          color: var(--text);
+          font-weight: 700;
+          background: rgba(67, 97, 238, 0.1);
+      }
+
+      .navbar nav a.active::after {
+          width: 80%;
+      }
+
+      /* Notification Badge */
+      .navbar nav a.has-notification {
+          position: relative;
+      }
+
+      .navbar nav a.has-notification::before {
+          content: '';
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          width: 8px;
+          height: 8px;
+          background: var(--danger);
+          border-radius: 50%;
+          box-shadow: 0 0 0 2px white;
+          animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+          0% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.3); opacity: 0.7; }
+          100% { transform: scale(1); opacity: 1; }
+      }
+
+      /* Profile Dropdown */
+      .profile-dropdown {
+          position: relative;
+          display: inline-block;
+      }
+
+      .profile-btn {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          background: rgba(255, 255, 255, 0.8);
+          padding: 0.5rem 1rem;
+          border-radius: 12px;
+          cursor: pointer;
+          transition: var(--transition);
+      }
+
+      .profile-btn:hover {
+          background: white;
+          box-shadow: var(--shadow-sm);
+      }
+
+      .profile-img {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 2px solid var(--primary-light);
+      }
+
+      .profile-name {
+          font-weight: 600;
+          color: var(--text);
+      }
+
+      .dropdown-menu {
+          position: absolute;
+          right: 0;
+          top: 100%;
+          margin-top: 0.5rem;
+          background: white;
+          border-radius: 12px;
+          box-shadow: var(--shadow-xl);
+          min-width: 200px;
+          overflow: hidden;
+          z-index: 1000;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(10px);
+          transition: var(--transition);
+      }
+
+      .profile-dropdown:hover .dropdown-menu {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+      }
+
+      .dropdown-item {
+          padding: 0.75rem 1.5rem;
+          color: var(--text);
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          transition: var(--transition);
+      }
+
+      .dropdown-item:hover {
+          background: var(--primary-light);
+          color: var(--primary-dark);
+      }
+
+      .dropdown-divider {
+          height: 1px;
+          background: var(--border);
+          margin: 0.25rem 0;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1200px) {
+          .navbar {
+              padding: 0.8rem 2rem;
+          }
+          
+          .navbar nav {
+              gap: 1rem;
+          }
+      }
+
+      @media (max-width: 992px) {
+          .navbar {
+              flex-direction: column;
+              padding: 1rem;
+              border-radius: 0 0 var(--radius) var(--radius);
+          }
+          
+          .navbar nav {
+              margin-top: 1rem;
+              flex-wrap: wrap;
+              justify-content: center;
+              gap: 0.75rem;
+              padding: 0.5rem;
+          }
+          
+          .navbar nav a {
+              padding: 0.5rem;
+              font-size: 0.9rem;
+          }
+          
+          .logo {
+              font-size: 1.8rem;
+          }
+      }
+
+      @media (max-width: 768px) {
+          .navbar nav {
+              gap: 0.5rem;
+          }
+          
+          .navbar nav a {
+              padding: 0.5rem;
+              font-size: 0.85rem;
+          }
+          
+          .logo {
+              font-size: 1.6rem;
+          }
+          
+          .logo::after {
+              font-size: 1rem;
+              right: -1.8rem;
+          }
+      }
+  </style>
+  <style>
+    :root {
+      --primary: #4361ee;
+      --primary-dark: #3a0ca3;
+      --secondary: #3f37c9;
+      --accent: #4895ef;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --success: #4cc9f0;
+      --warning: #f8961e;
+      --danger: #f72585;
+      --info: #7209b7;
+      --gray: #6c757d;
+      --light-gray: #e9ecef;
+      --card-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    /* Modern Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--light-gray);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Smooth Body Styles */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      color: var(--dark);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Dashboard Container */
+    .dashboard {
+      max-width: 1400px;
+      margin: 40px auto;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .dashboard::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(67, 97, 238, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+      z-index: -1;
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Title Styles */
+    h2 {
+      text-align: center;
+      margin-bottom: 50px;
+      color: var(--primary-dark);
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 10px;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+
+    /* Card Grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 50px;
+    }
+
+    /* Card Styles */
+    .card-box {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      border: none;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .card-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    .card-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-box:nth-child(1) { --card-color: var(--primary); }
+    .card-box:nth-child(2) { --card-color: var(--success); }
+    .card-box:nth-child(3) { --card-color: var(--info); }
+    .card-box:nth-child(4) { --card-color: var(--warning); }
+    .card-box:nth-child(5) { --card-color: var(--danger); }
+    .card-box:nth-child(6) { --card-color: var(--secondary); }
+
+    .card-box:hover::after {
+      opacity: 1;
+    }
+
+    /* Card Content */
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-title i {
+      font-size: 1.3rem;
+      color: var(--card-color);
+    }
+
+    .card-count {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--card-color);
+      margin: 10px 0;
+      letter-spacing: -1px;
+    }
+
+    .card-change {
+      font-size: 0.9rem;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .card-change.positive {
+      color: #10b981;
+    }
+
+    .card-change.negative {
+      color: #ef4444;
+    }
+
+    /* Chart Container */
+    .chart-container {
+      margin-top: 60px;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chart-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .chart-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .chart-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .chart-btn {
+      background: var(--light);
+      border: none;
+      padding: 8px 15px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .chart-btn:hover {
+      background: var(--light-gray);
+    }
+
+    .chart-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .dashboard {
+        padding: 30px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .dashboard {
+        margin: 20px;
+        padding: 20px;
+      }
+      
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+      }
+      
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .chart-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+    }
+
+    /* Animation Classes */
+    .animate-delay-1 { animation-delay: 0.1s; }
+    .animate-delay-2 { animation-delay: 0.2s; }
+    .animate-delay-3 { animation-delay: 0.3s; }
+    .animate-delay-4 { animation-delay: 0.4s; }
+    .animate-delay-5 { animation-delay: 0.5s; }
+    .animate-delay-6 { animation-delay: 0.6s; }
+
+    /* Loading Animation */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .loading {
+      animation: pulse 1.5s ease-in-out infinite;
+      background-color: var(--light-gray);
+      border-radius: 4px;
+      color: transparent;
+    }
+
+    /* Tooltip */
+    .tooltip-inner {
+      background-color: var(--dark);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+
+    .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before,
+    .bs-tooltip-top .tooltip-arrow::before {
+      border-top-color: var(--dark);
+    }
+  </style>
+</head>
+<body>
+	<header class="navbar">
+			<div class="logo">JobHuntPro</div>
+			<nav class="d-flex align-items-center gap-3 flex-wrap">
+				<a href="admin-index">Index</a>
+				<a href="admin-dashboard">Dashboard</a>
+				<a href="admin-about">About</a>
+				<a href="admin-contact">Contact</a>
+				<a href="admin-jobseekers">Job Seekers</a>
+				<a href="admin-recruiters">Employers</a>
+				<a href="admin-report">Report</a>
+				<a href="admin-admins">Admins</a>
+				<a href="admin-applications">Applications</a>
+				<a href="admin-profile">Profile</a>
+			</nav>
+		</header>
+  <div class="dashboard animate__animated animate__fadeIn">
+    <h2 class="animate__animated animate__fadeInDown">
+      <i class="fas fa-chart-line"></i> Admin Dashboard - JobHuntPro
+    </h2>
+
+    <div class="card-grid">
+      <div class="card-box animate__animated animate__fadeInLeft animate-delay-1">
+        <div class="card-title"><i class="fas fa-users"></i> Total Users</div>
+        <div class="card-count" id="userCount">...</div>
+        <div class="card-change positive">
+          <i class="fas fa-arrow-up"></i> 12% from last month
+        </div>
+      </div>
+      <div class="card-box animate__animated animate__fadeInLeft animate-delay-2">
+        <div class="card-title"><i class="fas fa-user-graduate"></i> Job Seekers</div>
+        <div class="card-count" id="jobSeekerCount">...</div>
+        <div class="card-change positive">
+          <i class="fas fa-arrow-up"></i> 8% from last month
+        </div>
+      </div>
+      <div class="card-box animate__animated animate__fadeInLeft animate-delay-3">
+        <div class="card-title"><i class="fas fa-briefcase"></i> Recruiters</div>
+        <div class="card-count" id="employerCount">...</div>
+        <div class="card-change positive">
+          <i class="fas fa-arrow-up"></i> 15% from last month
+        </div>
+      </div>
+      <div class="card-box animate__animated animate__fadeInLeft animate-delay-4">
+        <div class="card-title"><i class="fas fa-user-shield"></i> Admins</div>
+        <div class="card-count" id="adminCount">...</div>
+        <div class="card-change">
+          <i class="fas fa-minus"></i> No change
+        </div>
+      </div>
+      <div class="card-box animate__animated animate__fadeInLeft animate-delay-5">
+        <div class="card-title"><i class="fas fa-file-alt"></i> Jobs Posted</div>
+        <div class="card-count" id="jobCount">...</div>
+        <div class="card-change positive">
+          <i class="fas fa-arrow-up"></i> 22% from last month
+        </div>
+      </div>
+      <div class="card-box animate__animated animate__fadeInLeft animate-delay-6">
+        <div class="card-title"><i class="fas fa-tasks"></i> Applications</div>
+        <div class="card-count" id="applicationCount">...</div>
+        <div class="card-change positive">
+          <i class="fas fa-arrow-up"></i> 18% from last month
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Simulate loading animation
+    document.querySelectorAll('.card-count').forEach(el => {
+      el.classList.add('loading');
+      el.style.width = '80px';
+      el.style.height = '40px';
+      el.style.display = 'inline-block';
+    });
+
+    async function fetchData(url) {
+      // Simulate network delay
+      await new Promise(resolve => setTimeout(resolve, 800 + Math.random() * 700));
+      
+      try {
+        const res = await fetch(url);
+        const json = await res.json();
+        return json.body || [];
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        return [];
+      }
+    }
+
+    async function loadStats() {
+      const [users, seekers, employers, admins, jobs, applications] = await Promise.all([
+        fetchData("http://localhost:8080/users"),
+        fetchData("http://localhost:8080/jobseeker"),
+        fetchData("http://localhost:8080/employer"),
+        fetchData("http://localhost:8080/admin"),
+        fetchData("http://localhost:8080/job/view-all"),
+        fetchData("http://localhost:8080/application")
+      ]);
+
+      // Remove loading animation
+      document.querySelectorAll('.card-count').forEach(el => {
+        el.classList.remove('loading');
+        el.style.width = '';
+        el.style.height = '';
+      });
+
+      // Update counts
+      document.getElementById("userCount").textContent = users.length.toLocaleString();
+      document.getElementById("jobSeekerCount").textContent = seekers.length.toLocaleString();
+      document.getElementById("employerCount").textContent = employers.length.toLocaleString();
+      document.getElementById("adminCount").textContent = admins.length.toLocaleString();
+      document.getElementById("jobCount").textContent = jobs.length.toLocaleString();
+      document.getElementById("applicationCount").textContent = applications.length.toLocaleString();
+
+      // Process application status data
+       }
+
+    // Initialize the dashboard
+    document.addEventListener('DOMContentLoaded', function() {
+      loadStats();
+      
+      // Add hover effects to cards
+      const cards = document.querySelectorAll('.card-box');
+      cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-5px)';
+        });
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = '';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

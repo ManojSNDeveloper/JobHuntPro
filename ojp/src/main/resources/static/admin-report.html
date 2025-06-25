@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Report an Issue – JobHuntPro</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		/* Ultimate Luxury CSS - The Pinnacle of Web Design Excellence */
+		:root {
+			--primary: #4361ee;
+			--primary-dark: #3a56d4;
+			--primary-light: #e0e7ff;
+			--accent: #06d6a0;
+			--accent-dark: #05b388;
+			--danger: #ef233c;
+			--danger-dark: #d90429;
+			--bg: #f8f9fa;
+			--card-bg: #ffffff;
+			--text: #1a1a2e;
+			--text-muted: #6c757d;
+			--border: #e9ecef;
+			--radius: 24px;
+			--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+			--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
+			--shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+			--shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.15);
+			--shadow-xxl: 0 30px 60px rgba(0, 0, 0, 0.2);
+			--transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+			--gradient-primary: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+			--gradient-accent: linear-gradient(135deg, #06d6a0 0%, #118ab2 100%);
+			--gradient-danger: linear-gradient(135deg, #ef233c 0%, #d90429 100%);
+			--gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.98) 100%);
+			--gradient-radial: radial-gradient(circle at 50% 50%, rgba(239, 35, 60, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+		}
+
+		@font-face {
+			font-family: 'ClashDisplay';
+			src: url('https://fonts.cdnfonts.com/css/clash-display') format('woff2');
+			font-weight: 600;
+			font-style: normal;
+		}
+
+		body {
+			font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+			background-color: var(--bg);
+			color: var(--text);
+			line-height: 1.8;
+			margin: 0;
+			padding: 0;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			background-image:
+				url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuOCkiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiIG9wYWNpdHk9IjAuMDMiLz48L3N2Zz4='),
+				var(--gradient-radial);
+			background-attachment: fixed;
+			overflow-x: hidden;
+		}
+
+		/* Supreme Navbar - Floating Glass Panel */
+		.navbar {
+			background: rgba(255, 255, 255, 0.98);
+			padding: 0.8rem 4rem;
+			box-shadow: var(--shadow-xl);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			position: sticky;
+			top: 1rem;
+			z-index: 1000;
+			backdrop-filter: blur(16px);
+			-webkit-backdrop-filter: blur(16px);
+			border: 1px solid rgba(255, 255, 255, 0.3);
+			border-radius: var(--radius);
+			margin: 0 auto;
+			max-width: calc(100% - 2rem);
+			width: calc(100% - 4rem);
+			transition: var(--transition);
+		}
+
+		.navbar:hover {
+			box-shadow: var(--shadow-xxl);
+			transform: translateY(-2px);
+		}
+
+		.logo {
+			font-family: 'ClashDisplay', sans-serif;
+			font-size: 2rem;
+			font-weight: 700;
+			background: var(--gradient-primary);
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+			letter-spacing: -0.5px;
+			display: inline-flex;
+			align-items: center;
+			text-decoration: none;
+			transition: var(--transition);
+			position: relative;
+		}
+
+		.logo:hover {
+			transform: scale(1.05);
+		}
+
+		.logo::after {
+			content: "PRO";
+			font-size: 1.2rem;
+			background: var(--gradient-accent);
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+			margin-left: 0.4rem;
+			align-self: flex-end;
+			font-weight: 800;
+			position: absolute;
+			right: -2.2rem;
+			bottom: 0.2rem;
+		}
+
+		.navbar nav {
+			display: flex;
+			align-items: center;
+			gap: 2rem;
+		}
+
+		.navbar nav a {
+			font-weight: 600;
+			text-decoration: none;
+			color: var(--text-muted);
+			font-size: 1rem;
+			position: relative;
+			padding: 0.6rem 0;
+			transition: var(--transition);
+			letter-spacing: 0.5px;
+		}
+
+		.navbar nav a::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 0;
+			height: 3px;
+			background: var(--gradient-primary);
+			transition: var(--transition);
+			border-radius: 2px;
+		}
+
+		.navbar nav a:hover {
+			color: var(--text);
+			transform: translateY(-2px);
+		}
+
+		.navbar nav a:hover::after {
+			width: 100%;
+		}
+
+		.navbar nav a.active {
+			color: var(--text);
+			font-weight: 700;
+		}
+
+		.navbar nav a.active::after {
+			width: 100%;
+		}
+
+		/* Grand Report Section - Emergency Glass Panel */
+		.report-section {
+			max-width: 800px;
+			margin: 5rem auto;
+			background: var(--gradient-glass);
+			padding: 4rem;
+			border-radius: var(--radius);
+			box-shadow: var(--shadow-xxl);
+			position: relative;
+			overflow: hidden;
+			border: 1px solid rgba(255, 255, 255, 0.5);
+			backdrop-filter: blur(12px);
+			-webkit-backdrop-filter: blur(12px);
+			transform-style: preserve-3d;
+			perspective: 1000px;
+		}
+
+		.report-section::before,
+		.report-section::after {
+			content: '';
+			position: absolute;
+			border-radius: 50%;
+			background: radial-gradient(circle, rgba(239, 35, 60, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+			filter: blur(80px);
+			z-index: -1;
+			animation: float 20s infinite alternate ease-in-out;
+		}
+
+		.report-section::before {
+			top: -200px;
+			left: -200px;
+			width: 600px;
+			height: 600px;
+			opacity: 0.3;
+			animation-delay: 0s;
+		}
+
+		.report-section::after {
+			bottom: -150px;
+			right: -150px;
+			width: 500px;
+			height: 500px;
+			opacity: 0.2;
+			animation-delay: 5s;
+		}
+
+		@keyframes float {
+			0% {
+				transform: translate(0, 0) rotate(0deg);
+			}
+
+			33% {
+				transform: translate(50px, 50px) rotate(5deg);
+			}
+
+			66% {
+				transform: translate(-50px, -50px) rotate(-5deg);
+			}
+
+			100% {
+				transform: translate(0, 0) rotate(0deg);
+			}
+		}
+
+		.report-section h2 {
+			font-family: 'ClashDisplay', sans-serif;
+			font-weight: 700;
+			color: var(--danger);
+			margin-bottom: 1.5rem;
+			position: relative;
+			font-size: 2.5rem;
+			line-height: 1.2;
+			letter-spacing: -0.5px;
+		}
+
+		.report-section h2::after {
+			content: '';
+			position: absolute;
+			bottom: -10px;
+			left: 0;
+			width: 80px;
+			height: 4px;
+			background: var(--gradient-danger);
+			border-radius: 2px;
+			transform-origin: left;
+			animation: underlineGrow 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+		}
+
+		@keyframes underlineGrow {
+			0% {
+				transform: scaleX(0);
+			}
+
+			100% {
+				transform: scaleX(1);
+			}
+		}
+
+		.report-section p {
+			font-size: 1.15rem;
+			margin-bottom: 2.5rem;
+			color: var(--text);
+			line-height: 1.8;
+		}
+
+		/* Luxury Form Elements */
+		.form-label {
+			font-weight: 600;
+			color: var(--text);
+			margin-bottom: 0.8rem;
+			display: block;
+			position: relative;
+			padding-left: 1rem;
+		}
+
+		.form-label::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			background: var(--danger);
+		}
+
+		.form-control {
+			border-radius: 12px;
+			border: 1px solid var(--border);
+			padding: 14px 18px;
+			font-size: 1rem;
+			transition: var(--transition);
+			background: rgba(255, 255, 255, 0.8);
+			box-shadow: var(--shadow-sm);
+		}
+
+		.form-control:focus {
+			border-color: var(--primary);
+			box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+			background: white;
+			transform: translateY(-2px);
+		}
+
+		textarea.form-control {
+			min-height: 180px;
+			resize: vertical;
+		}
+
+		/* Emergency Submit Button */
+		.btn-submit {
+			background: var(--gradient-danger);
+			color: white;
+			font-weight: 600;
+			border-radius: var(--radius);
+			padding: 16px;
+			width: 100%;
+			transition: var(--transition);
+			border: none;
+			font-size: 1.1rem;
+			letter-spacing: 0.5px;
+			text-transform: uppercase;
+			box-shadow: var(--shadow-md);
+			position: relative;
+			overflow: hidden;
+		}
+
+		.btn-submit:hover {
+			background: var(--danger-dark);
+			transform: translateY(-3px);
+			box-shadow: var(--shadow-lg);
+		}
+
+		.btn-submit::after {
+			content: '';
+			position: absolute;
+			top: -50%;
+			left: -50%;
+			width: 200%;
+			height: 200%;
+			background: linear-gradient(to bottom right,
+					rgba(255, 255, 255, 0.3) 0%,
+					rgba(255, 255, 255, 0) 60%);
+			transform: rotate(30deg);
+			transition: var(--transition);
+		}
+
+		.btn-submit:hover::after {
+			left: 100%;
+		}
+
+		/* Floating Elements Animation */
+		@keyframes floating {
+			0% {
+				transform: translateY(0px);
+			}
+
+			50% {
+				transform: translateY(-15px);
+			}
+
+			100% {
+				transform: translateY(0px);
+			}
+		}
+
+		.floating-element {
+			animation: floating 6s ease-in-out infinite;
+		}
+
+		/* Responsive Design */
+		@media (max-width: 992px) {
+			.navbar {
+				padding: 0.8rem 2rem;
+				max-width: calc(100% - 1rem);
+				width: calc(100% - 2rem);
+			}
+
+			.report-section {
+				padding: 3rem 2rem;
+				margin: 4rem 1rem;
+			}
+		}
+
+		@media (max-width: 768px) {
+			.navbar {
+				flex-direction: column;
+				padding: 1rem;
+				top: 0.5rem;
+				border-radius: 12px;
+			}
+
+			.navbar nav {
+				margin-top: 1rem;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 1rem;
+			}
+
+			.report-section h2 {
+				font-size: 2rem;
+			}
+
+			.report-section {
+				padding: 2.5rem 1.5rem;
+			}
+		}
+
+		/* Micro-interactions */
+		.form-group {
+			transition: var(--transition);
+		}
+
+		.form-group:focus-within {
+			transform: translateY(-2px);
+		}
+
+		/* Supreme Decorative Elements */
+		.decorative-shape {
+			position: absolute;
+			z-index: -1;
+			opacity: 0.1;
+			filter: blur(60px);
+		}
+
+		.shape-1 {
+			width: 300px;
+			height: 300px;
+			background: var(--danger);
+			border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+			top: -100px;
+			left: -100px;
+			animation: morph 15s infinite alternate;
+		}
+
+		.shape-2 {
+			width: 400px;
+			height: 400px;
+			background: var(--primary);
+			border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+			bottom: -150px;
+			right: -150px;
+			animation: morph 20s infinite alternate-reverse;
+		}
+
+		@keyframes morph {
+			0% {
+				border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+			}
+
+			50% {
+				border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+			}
+
+			100% {
+				border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+			}
+		}
+
+		/* Particle Animation */
+		.particles {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			z-index: -1;
+		}
+
+		.particle {
+			position: absolute;
+			background: rgba(239, 35, 60, 0.15);
+			border-radius: 50%;
+			animation: float-particle 15s infinite linear;
+		}
+
+		@keyframes float-particle {
+			0% {
+				transform: translateY(0) translateX(0);
+				opacity: 0;
+			}
+
+			10% {
+				opacity: 1;
+			}
+
+			90% {
+				opacity: 1;
+			}
+
+			100% {
+				transform: translateY(-100vh) translateX(100px);
+				opacity: 0;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- Add these inside your body before the content -->
+	<div class="particles" id="particles-js"></div>
+	<div class="decorative-shape shape-1"></div>
+	<div class="decorative-shape shape-2"></div>
+	<div class="floating-element"></div>
+	<div class="floating-element"></div>
+
+	<!-- header.html -->
+	<header class="navbar">
+		<div class="logo">JobHuntPro</div>
+		<nav>
+			<a href="admin-index">Index</a>
+			<a href="admin-dashboard">Dashboard</a>
+			<a href="admin-about">About</a>
+			<a href="admin-contact">Contact</a>
+			<a href="admin-jobseekers">Job Seekers</a>
+			<a href="admin-recruiters">Employers</a>
+			<a href="admin-report">Report</a>
+			<a href="admin-admins">Admins</a>
+			<a href="admin-applications">Applications</a>
+			<a href="admin-profile">Profile</a>
+		</nav>
+	</header>
+
+
+	<div class="report-section">
+		<h2>Report a Problem</h2>
+		<p class="mb-4">If you notice anything unusual or broken on the JobHuntPro platform, please use the form below
+			to report it. Your feedback helps us improve!</p>
+
+		<form>
+			<div class="mb-3">
+				<label for="name" class="form-label">Your Name</label>
+				<input type="text" id="name" class="form-control" placeholder="Enter your full name">
+			</div>
+
+			<div class="mb-3">
+				<label for="email" class="form-label">Your Email</label>
+				<input type="email" id="email" class="form-control" placeholder="Enter your email address">
+			</div>
+
+			<div class="mb-3">
+				<label for="url" class="form-label">Affected Page (Optional)</label>
+				<input type="text" id="url" class="form-control" placeholder="e.g. /job-detail.html?id=10">
+			</div>
+
+			<div class="mb-3">
+				<label for="issue" class="form-label">Describe the Issue</label>
+				<textarea id="issue" class="form-control" rows="5"
+					placeholder="Explain what happened in detail..."></textarea>
+			</div>
+
+			<button type="submit" class="btn btn-submit">Submit Report</button>
+		</form>
+	</div>
+	<script>
+		// Particle animation script
+		document.addEventListener('DOMContentLoaded', function () {
+			const particlesContainer = document.getElementById('particles-js');
+			const particleCount = 20;
+
+			for (let i = 0; i < particleCount; i++) {
+				const particle = document.createElement('div');
+				particle.classList.add('particle');
+
+				// Random properties
+				const size = Math.random() * 12 + 6;
+				const posX = Math.random() * 100;
+				const delay = Math.random() * 15;
+				const duration = Math.random() * 10 + 15;
+
+				particle.style.width = `${size}px`;
+				particle.style.height = `${size}px`;
+				particle.style.left = `${posX}%`;
+				particle.style.bottom = `-${size}px`;
+				particle.style.animationDelay = `${delay}s`;
+				particle.style.animationDuration = `${duration}s`;
+
+				particlesContainer.appendChild(particle);
+			}
+		});
+	</script>
+</body>
+
+</html>

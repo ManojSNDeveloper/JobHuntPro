@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Job Seeker Login – JobHuntPro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --primary-dark: #3a0ca3;
+      --secondary: #f72585;
+      --success: #2ecc71;
+      --success-dark: #27ae60;
+      --dark: #14213d;
+      --light: #f8f9fa;
+      --gradient: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      --success-gradient: linear-gradient(135deg, var(--success), var(--success-dark));
+    }
+    
+    @font-face {
+      font-family: 'ClashDisplay';
+      src: url('https://fonts.cdnfonts.com/css/clash-display') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+    
+    @font-face {
+      font-family: 'Satoshi';
+      src: url('https://fonts.cdnfonts.com/css/satoshi') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Satoshi', sans-serif;
+      background-color: #f8fafc;
+      color: var(--dark);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    body::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 200%;
+      background: radial-gradient(circle, var(--success) 0%, transparent 70%);
+      opacity: 0.08;
+      z-index: 0;
+    }
+    
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.6;
+      z-index: 0;
+    }
+    
+    .shape-1 {
+      width: 400px;
+      height: 400px;
+      background: var(--success);
+      top: 20%;
+      right: 10%;
+      animation: float 8s ease-in-out infinite;
+    }
+    
+    .shape-2 {
+      width: 300px;
+      height: 300px;
+      background: var(--primary);
+      bottom: 10%;
+      right: 20%;
+      animation: float 10s ease-in-out infinite 2s;
+    }
+    
+    .shape-3 {
+      width: 200px;
+      height: 200px;
+      background: var(--secondary);
+      top: 40%;
+      left: 15%;
+      animation: float 12s ease-in-out infinite 1s;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-50px) translateX(20px);
+      }
+    }
+    
+    .login-container {
+      max-width: 480px;
+      width: 100%;
+      margin: 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 3rem;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+    
+    .login-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: var(--success-gradient);
+    }
+    
+    .brand-logo {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .brand-logo i {
+      font-size: 2.5rem;
+      color: var(--success);
+      background: rgba(46, 204, 113, 0.1);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    
+    .form-title {
+      font-family: 'ClashDisplay', sans-serif;
+      font-size: 2rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 2rem;
+      background: linear-gradient(90deg, var(--success), var(--dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    #error-msg {
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      background: rgba(231, 76, 60, 0.1);
+      border: 1px solid rgba(231, 76, 60, 0.2);
+      color: #e74c3c;
+    }
+    
+    .form-label {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+    
+    .form-control {
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+      border-color: var(--success);
+      box-shadow: 0 0 0 0.25rem rgba(46, 204, 113, 0.25);
+    }
+    
+    .btn-login {
+      background: var(--success-gradient);
+      border: none;
+      padding: 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
+      width: 100%;
+      margin-top: 1rem;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .btn-login::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--success-dark), var(--success));
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .btn-login:hover::before {
+      opacity: 1;
+    }
+    
+    .form-footer {
+      text-align: center;
+      margin-top: 2rem;
+      color: #64748b;
+    }
+    
+    .form-footer a {
+      color: var(--success);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    
+    .form-footer a:hover {
+      color: var(--success-dark);
+    }
+    
+    @media (max-width: 576px) {
+      .login-container {
+        padding: 2rem 1.5rem;
+      }
+      
+      .form-title {
+        font-size: 1.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+
+  <div class="login-container">
+    <div class="brand-logo">
+      <i class="fas fa-user-tie"></i>
+    </div>
+    <h1 class="form-title">Talent Login</h1>
+    <div id="error-msg" class="d-none"></div>
+    <form id="jobseekerLoginForm">
+      <div class="mb-4">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="email" required placeholder="Enter your professional email" />
+      </div>
+      <div class="mb-4">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" required placeholder="Enter your password" />
+      </div>
+      <button type="submit" class="btn-login">
+        <span>Access My Dashboard</span>
+        <i class="fas fa-arrow-right ms-2"></i>
+      </button>
+    </form>
+    <div class="form-footer">
+      Don't have an account? <a href="jobseeker-register">Join as Talent</a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('jobseekerLoginForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const errorMsg = document.getElementById('error-msg');
+      errorMsg.classList.add('d-none');
+
+      try {
+        const response = await fetch('http://localhost:8080/auth/jobseeker-login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.message || "Login failed");
+        }
+
+        sessionStorage.setItem("jobseeker", JSON.stringify(result.body.profile));
+        window.location.href = 'jobseeker-index';
+
+      } catch (err) {
+        errorMsg.textContent = err.message;
+        errorMsg.classList.remove('d-none');
+        errorMsg.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  </script>
+</body>
+</html>

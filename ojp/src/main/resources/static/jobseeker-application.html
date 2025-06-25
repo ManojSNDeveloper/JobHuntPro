@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Applications – JobHuntPro</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --danger: #ef4444;
+      --muted: #6b7280;
+      --light-bg: #f3f4f6;
+      --text: #1f2937;
+      --radius: 14px;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+      --glass: rgba(255, 255, 255, 0.7);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(145deg, #e0f2fe, #f8fafc);
+      margin: 0;
+      padding: 60px 20px;
+      color: var(--text);
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow);
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .navbar nav a {
+      margin: 0 14px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .navbar nav a:hover {
+      color: var(--primary);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 80px auto 0 auto;
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      padding: 30px 40px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid #e0e7ff;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      padding: 16px 14px;
+      text-align: left;
+      font-size: 15px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    th {
+      background: #e0edff;
+      color: #1e40af;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    tr:hover {
+      background: #f8fafc;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-view {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-view:hover {
+      background-color: #1d4ed8;
+    }
+
+    .btn-withdraw {
+      background-color: var(--danger);
+      color: white;
+    }
+
+    .btn-withdraw:hover {
+      background-color: #b91c1c;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 999px;
+      text-transform: capitalize;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .status.APPLIED     { background-color: #e0f2fe; color: #0369a1; }
+    .status.SHORTLISTED { background-color: #dcfce7; color: #15803d; }
+    .status.INTERVIEW   { background-color: #fef9c3; color: #b45309; }
+    .status.REJECTED    { background-color: #fee2e2; color: #b91c1c; }
+    .status.SELECTED    { background-color: #ccfbf1; color: #0f766e; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .navbar nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      th, td {
+        font-size: 13px;
+        padding: 10px;
+      }
+
+      .btn {
+        font-size: 13px;
+        padding: 6px 10px;
+      }
+    }
+	.navbar nav a.active {
+	  color: var(--primary);
+	  font-weight: 600;
+	  border-bottom: 2px solid var(--primary);
+	  padding-bottom: 4px;
+	}
+
+  </style>
+
+</head>
+<body>
+	
+	<!-- header.html -->
+	<header class="navbar">
+	  <div class="logo">JobHuntPro</div>
+	  <nav>
+		<a href="jobseeker-index">Index</a>
+	    <a href="jobseeker-about">About</a>
+	    <a href="jobseeker-contact">Contact</a>
+	    <a href="jobseeker-report">Report</a>
+	    <a href="jobseeker-application">Application</a>
+	    <a href="jobseeker-profile">Profile</a>
+	  </nav>
+	</header>
+
+	
+  <div class="container">
+    <h1>My Job Applications</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Job Title</th>
+          <th>Company</th>
+          <th>Date Applied</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="applicationsTable"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const loadApplications = async () => {
+      const jobSeeker = JSON.parse(sessionStorage.getItem("jobseeker"));
+      if (!jobSeeker) {
+        alert("Please log in first.");
+        window.location.href = "jobseeker-login";
+        return;
+      }
+
+      try {
+        const res = await fetch(`http://localhost:8080/application/view-by-seeker/${jobSeeker.id}`);
+        const { body: applications } = await res.json();
+        const tableBody = document.getElementById("applicationsTable");
+        tableBody.innerHTML = "";
+
+        if (!applications || applications.length === 0) {
+          tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center;">No applications found.</td></tr>`;
+          return;
+        }
+		
+
+        applications.forEach(app => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${app.job.title}</td>
+            <td>${app.job.postedBy?.companyName || "Unknown"}</td>
+            <td>${app.appliedDate}</td>
+            <td><span class="status ${app.status}">${app.status}</span></td>
+            <td>
+              <a href="job-detail-jobseeker?id=${app.job.id}" class="btn btn-view">View</a>
+              <button class="btn btn-withdraw" onclick="withdrawApplication(${app.id})">Withdraw</button>
+            </td>
+          `;
+          tableBody.appendChild(row);
+        });
+      } catch (err) {
+        console.error("Error loading applications:", err);
+        alert("Failed to load applications.");
+      }
+    };
+
+    const withdrawApplication = async (applicationId) => {
+      if (!confirm("Are you sure you want to withdraw this application?")) return;
+
+      try {
+        const res = await fetch(`http://localhost:8080/application/${applicationId}`, {
+          method: "DELETE"
+        });
+
+        if (res.ok) {
+          alert("✅ Application withdrawn successfully.");
+          loadApplications(); // reload table
+        } else {
+          const err = await res.json();
+          alert("❌ " + (err.message || "Failed to withdraw."));
+        }
+      } catch (e) {
+        console.error(e);
+        alert("❌ Network error.");
+      }
+    };
+
+    document.addEventListener("DOMContentLoaded", loadApplications);
+	// Highlight active link
+		  const currentPath = window.location.pathname.split("/").pop(); // get filename
+		  document.querySelectorAll(".navbar nav a").forEach(link => {
+		    if (link.getAttribute("href") === currentPath) {
+		      link.classList.add("active");
+		    }
+		  });
+	
+  </script>
+</body>
+</html>

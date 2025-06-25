@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Apply for Job - JobHuntPro</title>
+  <style>
+    body {
+      background-color: #f8fafc;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 600px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #004aad;
+      margin-bottom: 25px;
+    }
+
+    .job-info {
+      margin-bottom: 30px;
+    }
+
+    .job-info h3 {
+      margin: 0;
+      color: #333;
+    }
+
+    .job-info p {
+      margin: 5px 0;
+      color: #555;
+    }
+
+    form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    textarea, input[type="file"] {
+      width: 100%;
+      margin-top: 5px;
+      padding: 10px;
+      font-size: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background-color: #004aad;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #00357a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Apply for this Job</h2>
+
+    <!-- Job Info Section -->
+    <div class="job-info">
+      <h3>Java Backend Developer</h3>
+      <p><strong>Company:</strong> TechWave Solutions</p>
+      <p><strong>Location:</strong> Bengaluru</p>
+      <p><strong>Salary:</strong> ₹8-10 LPA</p>
+      <p><strong>Experience Required:</strong> 2+ Years in Java/Spring Boot</p>
+    </div>
+
+    <!-- Application Form -->
+    <form action="/api/applications/apply" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="jobId" value="123"> <!-- dynamic from job -->
+
+      <label for="coverLetter">Cover Letter</label>
+      <textarea id="coverLetter" name="coverLetter" placeholder="Write a brief cover letter..."></textarea>
+
+      <label for="resume">Upload Resume (PDF)</label>
+      <input type="file" id="resume" name="resume" accept=".pdf" required>
+
+      <button type="submit">Submit Application</button>
+    </form>
+  </div>
+
+</body>
+</html>

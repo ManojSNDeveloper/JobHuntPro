@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Recruiter Dashboard – JobHuntPro</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+	<style>
+		body {
+			background-color: #f3f4f6;
+			font-family: 'Segoe UI', sans-serif;
+		}
+
+		.navbar {
+			background-color: white;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+			padding: 1rem 2rem;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.logo {
+			font-size: 1.8rem;
+			font-weight: bold;
+			color: #2563eb;
+		}
+
+		.navbar nav a {
+			margin-left: 20px;
+			text-decoration: none;
+			font-weight: 500;
+			color: #4b5563;
+		}
+
+		.navbar nav a:hover {
+			color: #2563eb;
+		}
+
+		.dashboard-card {
+			padding: 2rem;
+			border-radius: 20px;
+			transition: transform 0.3s ease;
+			position: relative;
+		}
+
+		.dashboard-card:hover {
+			transform: translateY(-5px);
+		}
+
+		.bg-gradient-primary {
+			background: linear-gradient(135deg, #2563eb, #4f46e5);
+			color: white;
+		}
+
+		.bg-gradient-success {
+			background: linear-gradient(135deg, #10b981, #059669);
+			color: white;
+		}
+
+		.bg-gradient-warning {
+			background: linear-gradient(135deg, #facc15, #fcd34d);
+			color: #1f2937;
+		}
+
+		.icon-circle {
+			font-size: 2.5rem;
+			width: 60px;
+			height: 60px;
+			border-radius: 50%;
+			background-color: rgba(255, 255, 255, 0.2);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0 auto 10px;
+		}
+
+		#upcomingDeadlines li {
+			font-size: 0.95rem;
+			margin-bottom: 6px;
+			font-weight: 500;
+		}
+
+		#upcomingDeadlines li::before {
+			content: "⏳ ";
+			margin-right: 6px;
+		}
+
+		footer {
+			margin-top: 60px;
+			padding: 1rem;
+			background: #fff;
+			text-align: center;
+			font-size: 0.9rem;
+			color: #6b7280;
+			box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.04);
+		}
+
+		.navbar nav a.active {
+			color: blue;
+			font-weight: 600;
+			border-bottom: 2px solid var(--primary);
+			padding-bottom: 4px;
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- header.html -->
+	<header class="navbar">
+		<div class="logo">JobHuntPro</div>
+		<nav>
+			<a href="recruiter-index">Index</a>
+			<a href="recruiter-about">About</a>
+			<a href="recruiter-contact">Contact</a>
+			<a href="recruiter-report">Report</a>
+			<a href="recruiter-dashboard">Dashboard</a>
+			<a href="recruiter-application">Application</a>
+			<a href="recruiter-profile">Profile</a>
+			<a href="post-job">Post-Job</a>
+		</nav>
+	</header>
+
+	<section class="container my-5">
+	 
+		<div class="row g-4 text-center">
+			<div class="col-md-4">
+				<div class="dashboard-card bg-gradient-primary shadow">
+					<div class="icon-circle">
+						<i class="bi bi-briefcase-fill"></i>
+					</div>
+					<h5>Total Jobs</h5>
+					<h2 id="totalJobs">--</h2>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="dashboard-card bg-gradient-success shadow">
+					<div class="icon-circle">
+						<i class="bi bi-check-circle-fill"></i>
+					</div>
+					<h5>Active Jobs</h5>
+					<h2 id="activeJobs">--</h2>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="dashboard-card bg-gradient-warning shadow">
+					<div class="icon-circle text-primary">
+						<i class="bi bi-calendar-event-fill"></i>
+					</div>
+					<h5>Upcoming Deadlines</h5>
+					<ul class="list-unstyled mt-2 text-start px-3" id="upcomingDeadlines"></ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		&copy; 2025 JobHuntPro. Designed by Manoj S N.
+	</footer>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", async () => {
+			const recruiter = JSON.parse(sessionStorage.getItem("recruiter"));
+			if (!recruiter || !recruiter.id) {
+				alert("Unauthorized. Please login.");
+				window.location.href = "recruiter-login.html";
+				return;
+			}
+
+			try {
+				const res = await fetch(`http://localhost:8080/job/dashboard/${recruiter.id}`);
+				const {body} = await res.json();
+
+				document.getElementById("totalJobs").textContent = body.totalJobs;
+				document.getElementById("activeJobs").textContent = body.activeJobs;
+
+				const ul = document.getElementById("upcomingDeadlines");
+				ul.innerHTML = "";
+				body.upcomingDeadlines.forEach(item => {
+					const li = document.createElement("li");
+					li.textContent = `${item.title} – ${item.deadline}`;
+					ul.appendChild(li);
+				});
+			} catch (err) {
+				console.error("Error loading dashboard", err);
+			}
+		});
+
+		function logout() {
+			sessionStorage.removeItem("recruiter");
+			window.location.href = "recruiter-login";
+		}
+		// Highlight active link
+		const currentPath = window.location.pathname.split("/").pop(); // get filename
+		document.querySelectorAll(".navbar nav a").forEach(link => {
+			if (link.getAttribute("href") === currentPath) {
+				link.classList.add("active");
+			}
+		});
+	</script>
+</body>
+
+</html>

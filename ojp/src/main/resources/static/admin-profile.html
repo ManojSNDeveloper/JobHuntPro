@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Admin Profile – JobHuntPro</title>
+	<link href="https://sdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<style>
+		:root {
+		  --bg-light: #f0f4f8;
+		  --bg-dark: #d9e2ec;
+		  --primary: #0d6efd;
+		  --primary-dark: #0a58ca;
+		  --text-main: #333;
+		  --form-bg: #ffffffcc;
+		  --border-color: #ced4da;
+		  --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+		}
+
+		body {
+		  background: linear-gradient(to right, var(--bg-light), var(--bg-dark));
+		  font-family: 'Segoe UI', 'Roboto', sans-serif;
+		  color: var(--text-main);
+		  margin: 0;
+		  padding: 0;
+		}
+
+		header.navbar {
+		  background-color: #ffffffee;
+		  backdrop-filter: blur(10px);
+		  padding: 1rem 2rem;
+		  display: flex;
+		  justify-content: space-between;
+		  flex-wrap: wrap;
+		  align-items: center;
+		  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+		  border-radius: 0 0 16px 16px;
+		}
+
+		.logo {
+		  font-size: 1.8rem;
+		  font-weight: 700;
+		  color: var(--primary);
+		}
+
+		header.navbar nav a {
+		  text-decoration: none;
+		  color: #444;
+		  font-weight: 600;
+		  margin-left: 14px;
+		  padding: 8px 12px;
+		  transition: 0.3s ease;
+		  border-radius: 8px;
+		}
+
+		header.navbar nav a:hover {
+		  background-color: #e9f0ff;
+		  color: var(--primary-dark);
+		}
+
+		.profile-container {
+		  max-width: 620px;
+		  margin: 60px auto;
+		  background: var(--form-bg);
+		  padding: 40px 30px;
+		  border-radius: 20px;
+		  box-shadow: var(--shadow);
+		  animation: fadeIn 0.6s ease;
+		  backdrop-filter: blur(10px);
+		}
+
+		h2 {
+		  text-align: center;
+		  font-weight: 800;
+		  margin-bottom: 35px;
+		  color: #1e293b;
+		  font-size: 2rem;
+		  background: linear-gradient(to right, var(--primary), #0dcaf0);
+		  -webkit-background-clip: text;
+		  -webkit-text-fill-color: transparent;
+		}
+
+		.form-label {
+		  font-weight: 600;
+		  margin-bottom: 6px;
+		  color: #2f2f2f;
+		}
+
+		.form-control {
+		  border-radius: 10px;
+		  border: 1px solid var(--border-color);
+		  padding: 12px 16px;
+		  font-size: 15px;
+		  background-color: #fefefe;
+		  transition: border-color 0.3s, box-shadow 0.3s;
+		}
+
+		.form-control:focus {
+		  border-color: var(--primary);
+		  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15);
+		  background-color: #fff;
+		}
+
+		.btn-success {
+		  border-radius: 12px;
+		  padding: 12px;
+		  font-weight: 600;
+		  font-size: 16px;
+		  transition: all 0.3s ease;
+		  background: linear-gradient(to right, #28a745, #218838);
+		  border: none;
+		  width: 100%;
+		  color: white;
+		}
+
+		.btn-success:hover {
+		  background: linear-gradient(to right, #218838, #1e7e34);
+		  transform: translateY(-2px);
+		  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+		}
+
+		#message {
+		  font-weight: 600;
+		  font-size: 15px;
+		  margin-top: 1rem;
+		}
+
+		@keyframes fadeIn {
+		  from {
+		    opacity: 0;
+		    transform: translateY(20px);
+		  }
+		  to {
+		    opacity: 1;
+		    transform: translateY(0);
+		  }
+		}
+
+		/* Responsive Enhancements */
+		@media (max-width: 576px) {
+		  .profile-container {
+		    padding: 25px 20px;
+		    margin: 30px 15px;
+		  }
+
+		  h2 {
+		    font-size: 1.6rem;
+		  }
+
+		  header.navbar {
+		    flex-direction: column;
+		    align-items: flex-start;
+		    gap: 0.8rem;
+		  }
+
+		  header.navbar nav {
+		    display: flex;
+		    flex-wrap: wrap;
+		    gap: 0.5rem;
+		  }
+		}
+	</style>
+</head>
+
+<body>
+	<header class="navbar">
+		<div class="logo">JobHuntPro</div>
+		<nav class="d-flex align-items-center gap-3 flex-wrap">
+			<a href="admin-index">Index</a>
+			<a href="admin-dashboard">Dashboard</a>
+			<a href="admin-about">About</a>
+			<a href="admin-contact">Contact</a>
+			<a href="admin-jobseekers">Job Seekers</a>
+			<a href="admin-recruiters">Employers</a>
+			<a href="admin-report">Report</a>
+			<a href="admin-admins">Admins</a>
+			<a href="admin-applications">Applications</a>
+			<a href="admin-profile">Profile</a>
+		</nav>
+	</header>
+	<div class="profile-container">
+		<h2>Admin Profile</h2>
+		<form id="adminProfileForm">
+			<div class="mb-3">
+				<label class="form-label">Admin Department</label>
+				<input type="text" class="form-control" id="department" required />
+			</div>
+			<div class="mb-3">
+				<label class="form-label">Name</label>
+				<input type="text" class="form-control" id="name" required />
+			</div>
+			<div class="mb-3">
+				<label class="form-label">Email</label>
+				<input type="email" class="form-control" id="email" required />
+			</div>
+			<div class="mb-3">
+				<label class="form-label">Password</label>
+				<input type="password" class="form-control" id="password" required />
+			</div>
+			<button type="submit" class="btn btn-success w-100">Update Profile</button>
+		</form>
+		<div id="message" class="text-center mt-3"></div>
+	</div>
+
+	<script>
+		const admin = JSON.parse(sessionStorage.getItem("admin"));
+		if (!admin) {
+			window.location.href = "admin-login.html";
+		}
+
+		const deptInput = document.getElementById("department");
+		const nameInput = document.getElementById("name");
+		const emailInput = document.getElementById("email");
+		const passwordInput = document.getElementById("password");
+		const messageDiv = document.getElementById("message");
+
+		async function loadAdminDetails() {
+			try {
+				const res = await fetch(`http://localhost:8080/admin/${admin.id}`);
+				const {body} = await res.json();
+				deptInput.value = body.department || "";
+				nameInput.value = body.user.name || "";
+				emailInput.value = body.user.email || "";
+				passwordInput.value = body.user.password || "";
+			} catch (err) {
+				messageDiv.innerHTML = `<span class="text-danger">Failed to load profile.</span>`;
+			}
+		}
+
+		document.getElementById("adminProfileForm").addEventListener("submit", async function (e) {
+			e.preventDefault();
+
+			const updatedAdmin = {
+				id: admin.id,
+				department: deptInput.value,
+				user: {
+					id: admin.user.id,
+					name: nameInput.value,
+					email: emailInput.value,
+					password: passwordInput.value,
+					role: "ADMIN"
+				}
+			};
+
+			try {
+				const res = await fetch(`http://localhost:8080/admin/update/${admin.id}`, {
+					method: "PUT",
+					headers: {"Content-Type": "application/json"},
+					body: JSON.stringify(updatedAdmin)
+				});
+
+				if (!res.ok) throw new Error("Update failed");
+				const result = await res.json();
+
+				// Optionally update session storage
+				sessionStorage.setItem("admin", JSON.stringify(result.body));
+				messageDiv.innerHTML = `<span class="text-success">Profile updated successfully!</span>`;
+
+			} catch (err) {
+				console.error(err);
+				messageDiv.innerHTML = `<span class="text-danger">Update failed. Try again.</span>`;
+			}
+		});
+
+		loadAdminDetails();
+	</script>
+</body>
+
+</html>

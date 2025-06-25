@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register – JobHuntPro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --primary-dark: #3a0ca3;
+      --secondary: #f72585;
+      --accent: #4cc9f0;
+      --success: #2ecc71;
+      --dark: #14213d;
+      --light: #f8f9fa;
+      --gradient: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      --success-gradient: linear-gradient(135deg, var(--success), #27ae60);
+    }
+    
+    @font-face {
+      font-family: 'ClashDisplay';
+      src: url('https://fonts.cdnfonts.com/css/clash-display') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+    
+    @font-face {
+      font-family: 'Satoshi';
+      src: url('https://fonts.cdnfonts.com/css/satoshi') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Satoshi', sans-serif;
+      background-color: #f8fafc;
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'ClashDisplay', sans-serif;
+      font-weight: 600;
+    }
+    
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 60vh;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(145deg, #f8fafc 0%, #e2e8f0 100%);
+      text-align: center;
+      padding: 0 2rem;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 200%;
+      background: radial-gradient(circle, var(--success) 0%, transparent 70%);
+      opacity: 0.1;
+      z-index: 1;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+    
+    .hero h1 {
+      font-size: 4rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(90deg, var(--success), #27ae60);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 4px 20px rgba(46, 204, 113, 0.15);
+    }
+    
+    .hero p {
+      font-size: 1.5rem;
+      color: #64748b;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    
+    .hero-shapes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+    
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.6;
+    }
+    
+    .shape-1 {
+      width: 400px;
+      height: 400px;
+      background: var(--success);
+      top: 20%;
+      right: 10%;
+      animation: float 8s ease-in-out infinite;
+    }
+    
+    .shape-2 {
+      width: 300px;
+      height: 300px;
+      background: var(--accent);
+      bottom: 10%;
+      right: 20%;
+      animation: float 10s ease-in-out infinite 2s;
+    }
+    
+    .shape-3 {
+      width: 200px;
+      height: 200px;
+      background: var(--primary);
+      top: 40%;
+      left: 15%;
+      animation: float 12s ease-in-out infinite 1s;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-50px) translateX(20px);
+      }
+    }
+    
+    /* Role Selection */
+    .roles-section {
+      padding: 6rem 2rem;
+      position: relative;
+      background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+    
+    .section-header h2 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(90deg, var(--success), var(--dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .section-header p {
+      font-size: 1.25rem;
+      color: #64748b;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    
+    .role-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .role-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+    
+    .role-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(46, 204, 113, 0.03) 0%, rgba(248, 250, 252, 0) 100%);
+      z-index: -1;
+    }
+    
+    .role-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+    }
+    
+    .role-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      color: white;
+    }
+    
+    .role-card:nth-child(1) .role-icon {
+      background: var(--success-gradient);
+      box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
+    }
+    
+    .role-card:nth-child(2) .role-icon {
+      background: linear-gradient(135deg, var(--primary), #4895ef);
+      box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
+    }
+    
+    .role-card:nth-child(3) .role-icon {
+      background: linear-gradient(135deg, var(--dark), #14213d);
+      box-shadow: 0 10px 20px rgba(20, 33, 61, 0.3);
+    }
+    
+    .role-card h3 {
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+    }
+    
+    .role-card p {
+      font-size: 1.1rem;
+      color: #64748b;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    
+    .role-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      width: 100%;
+      max-width: 200px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .role-card:nth-child(1) .role-btn {
+      background: var(--success-gradient);
+      color: white;
+      box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
+    }
+    
+    .role-card:nth-child(2) .role-btn {
+      background: var(--gradient);
+      color: white;
+      box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
+    }
+    
+    .role-card:nth-child(3) .role-btn {
+      background: linear-gradient(135deg, var(--dark), #14213d);
+      color: white;
+      box-shadow: 0 10px 20px rgba(20, 33, 61, 0.3);
+    }
+    
+    .role-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .role-btn:hover::before {
+      opacity: 1;
+    }
+    
+    .role-btn i {
+      margin-left: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .role-btn:hover i {
+      transform: translateX(5px);
+    }
+    
+    /* Floating animation for cards */
+    @keyframes cardFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+    
+    .role-card:nth-child(1) {
+      animation: cardFloat 6s ease-in-out infinite;
+    }
+    
+    .role-card:nth-child(2) {
+      animation: cardFloat 6s ease-in-out infinite 1s;
+    }
+    
+    .role-card:nth-child(3) {
+      animation: cardFloat 6s ease-in-out infinite 2s;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.25rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 500px;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .section-header h2 {
+        font-size: 2.5rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .section-header h2 {
+        font-size: 2rem;
+      }
+      
+      .section-header p {
+        font-size: 1rem;
+      }
+      
+      .role-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    
+    <div class="hero-content">
+      <h1>Begin Your Journey</h1>
+      <p>Create your JobHuntPro account to unlock personalized career opportunities and hiring solutions</p>
+    </div>
+  </section>
+
+  <!-- Role Selection -->
+  <section class="roles-section">
+    <div class="section-header">
+      <h2>Choose Your Path</h2>
+      <p>Select your role to experience a tailored registration process designed for your specific needs</p>
+    </div>
+    
+    <div class="role-container">
+      <!-- Job Seeker -->
+      <div class="role-card">
+        <div class="role-icon">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <h3>Talent</h3>
+        <p>Register as a job seeker to access thousands of opportunities, career tools, and personalized recommendations.</p>
+        <a href="jobseeker-register" class="role-btn">
+          Join as Talent
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- Recruiter -->
+      <div class="role-card">
+        <div class="role-icon">
+          <i class="fas fa-bullseye"></i>
+        </div>
+        <h3>Recruiter</h3>
+        <p>Create your recruiter account to post jobs, manage candidates, and access our premium hiring tools.</p>
+        <a href="recruiter-register" class="role-btn">
+          Hire Talent
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- Admin -->
+      <div class="role-card">
+        <div class="role-icon">
+          <i class="fas fa-cog"></i>
+        </div>
+        <h3>Administrator</h3>
+        <p>Platform administrators can register here to manage system settings and user accounts.</p>
+        <a href="admin-register" class="role-btn">
+          System Access
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

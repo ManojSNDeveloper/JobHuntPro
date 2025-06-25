@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Post a Job – JobHuntPro</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<style>
+		/* header.css */
+		:root {
+			--primary: #2563eb;
+			--muted: #6b7280;
+			--radius: 16px;
+			--text: #1f2937;
+		}
+
+		.navbar {
+			background: #ffffff;
+			padding: 1rem 2rem;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.logo {
+			font-size: 1.8rem;
+			font-weight: 700;
+			color: var(--primary);
+			text-decoration: none;
+		}
+
+		.navbar nav a {
+			margin: 0 12px;
+			font-weight: 500;
+			text-decoration: none;
+			color: var(--muted);
+			transition: color 0.3s ease;
+		}
+
+		.navbar nav a:hover {
+			color: var(--primary);
+		}
+
+
+		body {
+			margin: 0;
+			font-family: 'Segoe UI', sans-serif;
+			background-color: #f3f4f6;
+		}
+
+		.split-form {
+			display: flex;
+			min-height: 100vh;
+		}
+
+		.left-pane,
+		.right-pane {
+			flex: 1;
+			padding: 60px 40px;
+		}
+
+		.left-pane {
+			background: #ffffff;
+		}
+
+		.right-pane {
+			background: #4f46e5;
+			color: white;
+		}
+
+		h3.section-title {
+			font-size: 22px;
+			font-weight: 600;
+			margin-bottom: 30px;
+		}
+
+		.form-label {
+			font-weight: 500;
+			font-size: 15px;
+			margin-bottom: 6px;
+		}
+
+		.form-control,
+		.form-select {
+			border: none;
+			border-bottom: 1px solid #ccc;
+			border-radius: 0;
+			background: transparent;
+			font-size: 15px;
+			margin-bottom: 20px;
+			color: inherit;
+		}
+
+		.right-pane .form-control,
+		.right-pane .form-select {
+			border-color: rgba(255, 255, 255, 0.4);
+			color: white;
+		}
+
+		.form-control:focus,
+		.form-select:focus {
+			border-color: #2563eb;
+			box-shadow: none;
+		}
+
+		.right-pane .form-control:focus,
+		.right-pane .form-select:focus {
+			border-color: #fff;
+		}
+
+		.right-pane .form-control,
+		.right-pane .form-select {
+			background-color: transparent;
+			color: white;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+			caret-color: white;
+		}
+
+		.right-pane .form-control::placeholder {
+			color: rgba(255, 255, 255, 0.6);
+		}
+
+		.right-pane select option {
+			background-color: #4f46e5;
+			color: white;
+		}
+
+		.right-pane .form-control:focus,
+		.right-pane .form-select:focus {
+			outline: none;
+			border-color: #ffffff;
+			box-shadow: none;
+		}
+
+		/* Fix dropdown arrow visibility */
+		.right-pane select {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='white' d='M2 0L0 2h4z'/%3E%3C/svg%3E");
+			background-repeat: no-repeat;
+			background-position: right 0.75rem center;
+			background-size: 8px 10px;
+			padding-right: 1.5rem;
+		}
+
+
+		.btn-submit {
+			margin-top: 20px;
+			padding: 12px 24px;
+			font-weight: 600;
+			border: none;
+			border-radius: 8px;
+			background: white;
+			color: #4f46e5;
+			transition: 0.3s;
+		}
+
+		.btn-submit:hover {
+			background: #e0e7ff;
+		}
+
+		.form-check-label {
+			font-size: 14px;
+		}
+
+		@media (max-width: 768px) {
+			.split-form {
+				flex-direction: column;
+			}
+
+			.left-pane,
+			.right-pane {
+				padding: 30px 20px;
+			}
+		}
+
+		.navbar nav a.active {
+			color: var(--primary);
+			font-weight: 600;
+			border-bottom: 2px solid var(--primary);
+			padding-bottom: 4px;
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- header.html -->
+	<header class="navbar">
+		<div class="logo">JobHuntPro</div>
+		<nav>
+			<a href="recruiter-index">Index</a>
+			<a href="recruiter-about">About</a>
+			<a href="recruiter-contact">Contact</a>
+			<a href="recruiter-report">Report</a>
+			<a href="recruiter-dashboard">Dashboard</a>
+			<a href="recruiter-application">Application</a>
+			<a href="recruiter-profile">Profile</a>
+			<a href="post-job">Post-Job</a>
+		</nav>
+	</header>
+
+	<div class="split-form">
+		<!-- Left Pane -->
+		<div class="left-pane">
+			<h3 class="section-title text-primary">Job Information</h3>
+			<form id="jobForm" class="row">
+				<div class="col-md-6">
+					<label class="form-label">Job Title</label>
+					<input type="text" class="form-control" id="title" required>
+				</div>
+				<div class="col-md-6">
+					<label class="form-label">Location</label>
+					<input type="text" class="form-control" id="location" required>
+				</div>
+				<div class="col-md-12">
+					<label class="form-label">Description</label>
+					<textarea class="form-control" id="description" rows="3" required></textarea>
+				</div>
+				<div class="col-md-12">
+					<label class="form-label">Responsibilities</label>
+					<textarea class="form-control" id="responsibilities" rows="3" required></textarea>
+				</div>
+				<div class="col-md-6">
+					<label class="form-label">Experience</label>
+					<input type="text" class="form-control" id="experience" required>
+				</div>
+				<div class="col-md-6">
+					<label class="form-label">Skills</label>
+					<input type="text" class="form-control" id="skills" required>
+				</div>
+			</form>
+		</div>
+
+		<!-- Right Pane -->
+		<div class="right-pane">
+			<h3 class="section-title">Additional Details</h3>
+			<form onsubmit="submitJob(event)">
+				<label class="form-label">Job Type</label>
+				<select class="form-select" id="jobType" required>
+					<option value="">Select Type</option>
+					<option>Full-Time</option>
+					<option>Part-Time</option>
+					<option>Internship</option>
+					<option>Contract</option>
+				</select>
+
+				<label class="form-label">Salary</label>
+				<input type="text" class="form-control" id="salary" required>
+
+				<label class="form-label">Deadline</label>
+				<input type="date" class="form-control" id="deadline" required>
+
+				<div class="form-check my-3">
+					<input class="form-check-input" type="checkbox" id="agree" required>
+					<label class="form-check-label" for="agree">
+						I accept the <a href="#" class="text-white text-decoration-underline">Terms and Conditions</a>
+					</label>
+				</div>
+
+				<button type="submit" class="btn btn-submit">🚀 Post Job</button>
+			</form>
+		</div>
+	</div>
+
+	<script>
+		async function submitJob(e) {
+			e.preventDefault();
+
+			const recruiter = JSON.parse(sessionStorage.getItem("recruiter"));
+			if (!recruiter || !recruiter.id) {
+				alert("Please log in as a recruiter.");
+				window.location.href = "recruiter-login.html";
+				return;
+			}
+
+			const job = {
+				title: document.getElementById("title").value,
+				description: document.getElementById("description").value,
+				responsibilities: document.getElementById("responsibilities").value,
+				location: document.getElementById("location").value,
+				experience: document.getElementById("experience").value,
+				skills: document.getElementById("skills").value,
+				jobType: document.getElementById("jobType").value,
+				salary: document.getElementById("salary").value,
+				deadline: document.getElementById("deadline").value,
+				postedBy: {id: recruiter.id}
+			};
+
+			try {
+				const res = await fetch("http://localhost:8080/job/save", {
+					method: "POST",
+					headers: {"Content-Type": "application/json"},
+					body: JSON.stringify(job)
+				});
+
+				const result = await res.json();
+				if (!res.ok) throw new Error(result.message || "Failed");
+
+				alert("✅ Job posted successfully!");
+				window.location.href = "recruiter-index";
+			} catch (err) {
+				alert("❌ Error: " + err.message);
+			}
+		}
+	</script>
+	<script>
+
+		// Highlight active link
+		const currentPath = window.location.pathname.split("/").pop(); // get filename
+		document.querySelectorAll(".navbar nav a").forEach(link => {
+			if (link.getAttribute("href") === currentPath) {
+				link.classList.add("active");
+			}
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recruiter Login – JobHuntPro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-light: #6366f1;
+      --primary-dark: #4338ca;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      --gradient-light: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
+      background-size: cover;
+      position: relative;
+    }
+    
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 0;
+    }
+    
+    .login-container {
+      max-width: 460px;
+      width: 100%;
+      margin: 20px auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      animation: fadeInUp 0.6s ease;
+    }
+    
+    .login-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: var(--gradient);
+    }
+    
+    .login-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .form-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: var(--dark);
+      text-align: center;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .form-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--gradient);
+      border-radius: 2px;
+    }
+    
+    .form-subtitle {
+      font-size: 15px;
+      color: #64748b;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .form-control {
+      height: 50px;
+      border-radius: 10px;
+      padding-left: 45px;
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+      border-color: var(--primary);
+    }
+    
+    .input-group {
+      position: relative;
+      margin-bottom: 25px;
+    }
+    
+    .input-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+    
+    .form-control:focus + .input-icon {
+      color: var(--primary);
+    }
+    
+    .btn-login {
+      background: var(--gradient);
+      border: none;
+      height: 50px;
+      border-radius: 10px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-login:hover {
+      background: var(--gradient-light);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+    }
+    
+    .btn-login:active {
+      transform: translateY(1px);
+    }
+    
+    .btn-login::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+    }
+    
+    .btn-login:hover::after {
+      transform: translateX(0);
+    }
+    
+    .form-footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #64748b;
+    }
+    
+    .form-footer a {
+      color: var(--primary);
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .form-footer a:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+    
+    #error-msg {
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 25px;
+      border-left: 4px solid #ef4444;
+      animation: shakeX 0.5s;
+    }
+    
+    .brand-logo {
+      text-align: center;
+      margin-bottom: 30px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    
+    .password-toggle:hover {
+      color: var(--primary);
+    }
+    
+    @media (max-width: 576px) {
+      .login-container {
+        margin: 20px;
+        padding: 30px 20px;
+      }
+      
+      .form-title {
+        font-size: 24px;
+      }
+    }
+    
+    /* Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container animate__animated animate__fadeIn">
+    <div class="brand-logo">JobHuntPro</div>
+    <div class="form-title">Recruiter Portal</div>
+    <p class="form-subtitle">Access your recruiting dashboard to manage jobs and candidates</p>
+    
+    <div id="error-msg" class="alert alert-danger d-none"></div>
+    
+    <form id="recruiterLoginForm">
+      <div class="input-group">
+        <i class="fas fa-envelope input-icon"></i>
+        <input 
+          type="email" 
+          class="form-control" 
+          id="email" 
+          placeholder="Enter your email address" 
+          required 
+        />
+      </div>
+      
+      <div class="input-group">
+        <i class="fas fa-lock input-icon"></i>
+        <input 
+          type="password" 
+          class="form-control" 
+          id="password" 
+          placeholder="Enter your password" 
+          required 
+        />
+        <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+      </div>
+      
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="rememberMe">
+          <label class="form-check-label" for="rememberMe">Remember me</label>
+        </div>
+      </div>
+      
+      <button type="submit" class="btn btn-login btn-primary w-100 mb-3">
+        <i class="fas fa-sign-in-alt me-2"></i> Login
+      </button>
+      
+      <div class="form-footer">
+        New to JobHuntPro? <a href="#">Create recruiter account</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Password toggle functionality
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+    
+    togglePassword.addEventListener('click', function() {
+      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+      password.setAttribute('type', type);
+      this.classList.toggle('fa-eye-slash');
+    });
+    
+    // Form submission
+    document.getElementById('recruiterLoginForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const errorMsg = document.getElementById('error-msg');
+      const loginBtn = document.querySelector('.btn-login');
+      
+      // Reset error message
+      errorMsg.classList.add('d-none');
+      
+      // Show loading state
+      loginBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Authenticating...';
+      loginBtn.disabled = true;
+      
+      try {
+        const response = await fetch('http://localhost:8080/auth/recruiter-login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.message || "Login failed");
+        }
+
+        sessionStorage.setItem("recruiter", JSON.stringify(result.body.profile));
+        
+        // Show success animation
+        loginBtn.innerHTML = '<i class="fas fa-check-circle me-2"></i> Login Successful';
+        loginBtn.style.background = '#10b981';
+        
+        // Redirect after delay
+        setTimeout(() => {
+          window.location.href = 'recruiter-index';
+        }, 1000);
+
+      } catch (err) {
+        errorMsg.textContent = err.message;
+        errorMsg.classList.remove('d-none');
+        
+        // Shake animation for error
+        errorMsg.classList.add('animate__animated', 'animate__shakeX');
+        setTimeout(() => {
+          errorMsg.classList.remove('animate__animated', 'animate__shakeX');
+        }, 1000);
+        
+        // Reset button
+        loginBtn.innerHTML = '<i class="fas fa-sign-in-alt me-2"></i> Login';
+        loginBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
