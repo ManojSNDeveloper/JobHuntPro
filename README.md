@@ -61,35 +61,35 @@ Swagger UI available at:
 
 Use Swagger to test:
 
-POST /api/auth/register
+POST /auth/register
 
-POST /api/jobs (Employer)
+POST /jobs (Employer)
 
-GET /api/jobs (Search jobs)
+GET /jobs (Search jobs)
 
-POST /api/apply/{jobId} (Apply for job)
+POST /apply/{jobId} (Apply for job)
 
 ## 🔐 Sample Login Credentials
 👤 Job Seeker
 Username: jobseeker1
-Password: jsPass1
+Password: password123
 
 Username: jobseeker2
-Password: jsPass2
+Password: password123
 
 🧑‍💼 Employer
 Username: employer1
-Password: empPass1
+Password: password123
 
 Username: employer2
-Password: empPass2
+Password: password123
 
 🛠️ Admin
 Username: admin1
-Password: adminPass1
+Password: password123
 
 Username: admin2
-Password: adminPass2
+Password: password123
 
 ## 👨‍💻 Author
 Manoj S N
